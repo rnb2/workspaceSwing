@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+		<meta charset="utf-8" />
+		<title>load demo</title>
+		<style>/*<![CDATA[*/
+			body {
+			font-size: 12px;
+			font-family: Arial;
+			}
+		
+/*]]>*/</style>
+		<script src="https://code.jquery.com/jquery-1.10.2.js">/*<![CDATA[*//*]]>*/</script>
+	</head>
+	
+<body>
+		<b>Projects:</b>
+		<ol id="new-projects"></ol>
+		<script>/*<![CDATA[*/$( "#new-projects" ).load( "/resources/load.html #projects li" );/*]]>*/</script>
+	</body>
+</html>

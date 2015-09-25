@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="test components" default="jar" basedir="../">
+ <property environment="env"/>
+
+ <property name="build.dir" value="build" />
+  <property name="ant.dir" value="ant" />
+ <property name="classes.dir" value="${build.dir}/classes" />
+ <property name="src.java.dir" value="src/com/azovstal/core/button" />
+ 	<property name="jar.name" value="testButton"/>
+
+ <path id="build.classpath">
+ </path>
+
+
+  <target name="clean" description="Cleans up the build directory">
+    <delete includeemptydirs="true">
+      <fileset  dir="${build.dir}" includes="**/*"/>
+    </delete>  	
+  </target>
+
+  <target name="init" depends="clean" description="Initialize the build">
+    <mkdir dir="${build.dir}" />
+  </target>
+
+  <target name="compile" depends="init" description="Compile the Java source code">
+    <javac 
+        destdir="${build.dir}" 
+        classpathref="build.classpath" 
+	    debug="true"
+        nowarn="on">
+      <src path="${src.java.dir}" />
+    </javac>
+  </target>
+  
+    
+  <target name="jar" depends="compile">
+    <jar destfile="${build.dir}/${jar.name}.jar" manifest="${ant.dir}/MANIFEST.MF">
+
+       <fileset dir="${build.dir}">
+            <include name="**/*.class"/>
+
+       </fileset>
+    	
+    </jar>
+  </target>
+  </project>
