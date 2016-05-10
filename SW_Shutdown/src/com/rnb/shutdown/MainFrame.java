@@ -5,6 +5,8 @@ package com.rnb.shutdown;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -43,6 +45,8 @@ public class MainFrame extends JFrame {
 		setSize(300, 250);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		
+		setImageIcon();
 
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -80,6 +84,12 @@ public class MainFrame extends JFrame {
 
 		getContentPane().add(panel, SwingConstants.CENTER);
 		pack();
+	}
+
+	private void setImageIcon() {
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Image img = kit.createImage(getClass().getResource("/com/rnb/shutdown/img/icon.png"));
+		setIconImage(img);		
 	}
 
 	private void setDisableInput(JSpinner spinner) {
