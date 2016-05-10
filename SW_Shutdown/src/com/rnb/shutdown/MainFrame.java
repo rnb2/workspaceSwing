@@ -26,7 +26,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author roman.budukh
  *
  */
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame {
 
 	/**
 	 * 
@@ -43,21 +43,21 @@ public class MainFrame extends JFrame{
 		setSize(300, 250);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		
+
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
-			
+
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2,2));
-		
+		panel.setLayout(new GridLayout(2, 2));
+
 		Dimension dimension = new Dimension(100, 25);
 		spinner1 = new JSpinner();
 		spinner2 = new JSpinner();
-		
+
 		spinner1.setModel(new SpinnerNumberModel(0, 0, 4, 1));
 		spinner1.setPreferredSize(dimension);
 
@@ -66,18 +66,18 @@ public class MainFrame extends JFrame{
 
 		setDisableInput(spinner1);
 		setDisableInput(spinner2);
-				
+
 		JButton btnOk = new JButton("OK");
 		JButton btnCnl = new JButton("Cancel");
-		
+
 		btnOk.addActionListener(actionOk());
 		btnCnl.addActionListener(actionCnl());
-		
+
 		panel.add(getSpinnerPanel("Часы:", spinner1));
 		panel.add(getSpinnerPanel("Минуты:", spinner2));
 		panel.add(btnOk);
-		panel.add(btnCnl);		
-		
+		panel.add(btnCnl);
+
 		getContentPane().add(panel, SwingConstants.CENTER);
 		pack();
 	}
@@ -87,12 +87,12 @@ public class MainFrame extends JFrame{
 		JFormattedTextField textField = editor.getTextField();
 		textField.setEditable(false);
 	}
-	
+
 	private ActionListener actionCnl() {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 System.exit(0);
+				System.exit(0);
 			}
 		};
 	}
@@ -103,28 +103,14 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				Integer h = (Integer) spinner1.getValue();
 				Integer m = (Integer) spinner2.getValue();
-				
+
 				Long m1 = h * 60L;
 				Long m2 = m + m1;
 				Long s = m2 * 60;
-				
-				/*System.out.println(h);	
-				System.out.println(m);	
-				System.out.println(m1);	
-				System.out.println(m2);	
-				System.out.println(s);	*/
-				
-				String command = "cmd /c start cmd.exe /c \"shutdown /s /t "+ s +"\"";
-				//String command2 = "cd C:/ /r/n";
+
+				String command = "cmd /c start cmd.exe /c \"shutdown /s /t " + s + "\"";
 				try {
-					Process child = Runtime.getRuntime().exec(command); 
-					
-					/*OutputStream out = child.getOutputStream();
-					out.write(command2.getBytes());
-  				    out.flush();
-  				    out.close();*/
-  				    
-				
+					Runtime.getRuntime().exec(command);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -133,14 +119,13 @@ public class MainFrame extends JFrame{
 		};
 	}
 
-	private Box getSpinnerPanel(String text, JSpinner spinner){
+	private Box getSpinnerPanel(String text, JSpinner spinner) {
 		Box panel = Box.createHorizontalBox();
 		panel.add(new JLabel(text));
 		panel.add(Box.createHorizontalStrut(2));
 		panel.add(spinner);
-		
+
 		return panel;
 	}
-		
-	
+
 }
