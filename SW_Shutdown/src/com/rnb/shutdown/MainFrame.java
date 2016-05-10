@@ -11,7 +11,6 @@ import java.io.IOException;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,6 +42,7 @@ public class MainFrame extends JFrame{
 		setTitle("Выключатель");
 		setSize(300, 250);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
